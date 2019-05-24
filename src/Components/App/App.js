@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state={
       text: '',
-      items: []
+      items: ['hardcoded1', 'hardcoded2', 'hardcoded3']
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
