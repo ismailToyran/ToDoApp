@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
@@ -28,6 +27,9 @@ class App extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
+    this.handlePopupClose = this.handlePopupClose.bind(this);
+    this.handleMoveUp = this.handleMoveUp.bind(this);
+    this.handleMoveDown = this.handleMoveDown.bind(this);
   }
 
   handleSubmit (event) {
@@ -78,9 +80,54 @@ class App extends Component {
     const newToDos = this.state.toDos.filter((toDo) =>{
       return !toDo.done
     })
+    
     this.setState({
       toDos: newToDos
     });
+  }
+
+  handlePopupClose () {
+    this.setState({
+      title: ''
+    })
+  }
+
+  handleMoveUp (id) {
+    const toDos = this.state.toDos;
+
+    const position = toDos.findIndex((i) => i.id === id)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === 0 ) {
+      return
+    }
+
+    const toDo = toDos[position]
+    const newToDos = toDos.filter((i) => i.id !== id)
+    newToDos.splice(position - 1, 0, toDo)
+
+    this.setState({
+      toDos: newToDos
+    })
+  }
+
+  handleMoveDown (id) {
+    const toDos = this.state.toDos;
+
+    const position = toDos.findIndex((i) => i.id === id)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === toDos.length - 1) {
+      return
+    }
+
+    const toDo = toDos[position]
+    const newToDos = toDos.filter((i) => i.id !== id)
+    newToDos.splice(position + 1, 0, toDo)
+
+    this.setState({
+      toDos: newToDos
+    })
   }
 
   render() {
@@ -104,6 +151,10 @@ class App extends Component {
           <MyVerticallyCenteredModal
             show={this.state.modalShow}
             onHide={modalClose}
+            onSubmit={this.handleSubmit}
+            onChange={this.handleChange}
+            value={this.state.title}
+            onClose={this.handlePopupClose}
           />
         </ButtonToolbar>
 
@@ -114,18 +165,12 @@ class App extends Component {
           <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
         </p>
 
-        <p></p>
-
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' onChange={this.handleChange} value={this.state.title} />
-          <a href='#' onClick={this.props.handleDelete} > [x] </a>
-          <button>Submit</button>
-        </form>
-
         <ToDoList 
           toDos={this.state.toDos}
           handleDelete={this.handleDelete}
           handleDone={this.handleDone}
+          handleMoveUp={this.handleMoveUp}
+          handleMoveDown={this.handleMoveDown}
           />
       </div>
     )

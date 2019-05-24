@@ -13,9 +13,9 @@ class ListItem extends Component {
           style={{ fontSize: 'x-large' }}
         />
         {this.props.toDo.title}
-        <a href='#' onClick={this.props.handleDelete} >
-          [x]
-        </a>
+        <a href='#' onClick={this.props.handleDelete} > [x] </a>
+        <a href='#' onClick={this.props.handleMoveUp}>&#x25B2;</a>
+        <a href='#' onClick={this.props.handleMoveDown}>&#x25BC;</a>
       </li>
     )
   }

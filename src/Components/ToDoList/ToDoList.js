@@ -12,7 +12,9 @@ class ToDoList extends Component {
                    key={toDo.id}
                    toDo={toDo}
                    handleDone={this.props.handleDone.bind(null, toDo.id)}
-                   handleDelete={this.props.handleDelete.bind(null, toDo.id)}/>
+                   handleDelete={this.props.handleDelete.bind(null, toDo.id)}
+                   handleMoveUp={this.props.handleMoveUp.bind(null, toDo.id)}
+                   handleMoveDown={this.props.handleMoveDown.bind(null, toDo.id)} />
         }) }
       </ul>
     )
