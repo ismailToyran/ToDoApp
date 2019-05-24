@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ListItem extends Component {
   render() {
@@ -18,6 +19,12 @@ class ListItem extends Component {
       </li>
     )
   }
+}
+
+ListItem.propTypes = {
+  toDo: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleDone: PropTypes.func.isRequired
 }
 
 export default ListItem;

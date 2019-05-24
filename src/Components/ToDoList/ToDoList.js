@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ListItem from '../ListItem/ListItem';
 
 class ToDoList extends Component {
@@ -16,6 +17,12 @@ class ToDoList extends Component {
       </ul>
     )
   }
+}
+
+ToDoList.propTypes = {
+  toDos: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleDone: PropTypes.func.isRequired
 }
 
 export default ToDoList;

@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+
 import ToDoList from '../ToDoList/ToDoList';
+import MyVerticallyCenteredModal from '../Modal/Modal';
 
 const generateKey = (pre) => {
   return `${ pre }_${ new Date().getTime() }`;
@@ -14,7 +19,8 @@ class App extends Component {
       title: '',
       toDos: [{id: 1, title: 'Hardcoded Task 1', done: false}, 
               {id: 2, title: 'Hardcoded Task 2', done: false}, 
-              {id: 3, title: 'Hardcoded Task 3', done: false}]
+              {id: 3, title: 'Hardcoded Task 3', done: false}],
+      modalShow: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,10 +84,28 @@ class App extends Component {
   }
 
   render() {
+
+    let modalClose = () => this.setState({
+      modalShow: false 
+    });
+
     return (
       <div className="App">
-
         <p>ToDoApp</p>
+
+        <ButtonToolbar>
+          <Button
+            variant="danger"
+            onClick={() => this.setState({ modalShow: true })}
+          >
+            Yeni Görev Ekle
+          </Button>
+
+          <MyVerticallyCenteredModal
+            show={this.state.modalShow}
+            onHide={modalClose}
+          />
+        </ButtonToolbar>
 
         <p>
           All: {this.state.toDos.length} | 
@@ -93,7 +117,8 @@ class App extends Component {
         <p></p>
 
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} value={this.state.title} />
+          <input type='text' onChange={this.handleChange} value={this.state.title} />
+          <a href='#' onClick={this.props.handleDelete} > [x] </a>
           <button>Submit</button>
         </form>
 
