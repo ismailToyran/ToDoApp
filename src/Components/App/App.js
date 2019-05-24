@@ -13,6 +13,7 @@ class App extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleSubmit (event) {
@@ -34,6 +35,16 @@ class App extends Component {
     });
   }
 
+  handleDelete (itemToBeDeleted) {
+    const newItems = this.state.items.filter((_item) => {
+      return _item !== itemToBeDeleted
+    });
+    /* console.log(itemToBeDeleted); */
+    this.setState({
+      items: newItems
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +56,10 @@ class App extends Component {
           <button>Submit</button>
         </form>
 
-        <ToDoList items={this.state.items}/>
+        <ToDoList 
+          items={this.state.items}
+          handleDelete={this.handleDelete}
+          />
       </div>
     )
   }
