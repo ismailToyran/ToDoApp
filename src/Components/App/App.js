@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import ToDoList from '../ToDoList/ToDoList';
 
 class App extends Component {
 
@@ -36,14 +37,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <p>ToDoApp</p>
-          <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleChange} value={this.state.text} />
-            <button>Submit</button>
-          </form>
-          <p>{this.state.items.toString()}</p>
-        </div>
+
+        <p>ToDoApp</p>
+
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} value={this.state.text} />
+          <button>Submit</button>
+        </form>
+
+        <ToDoList items={this.state.items}/>
       </div>
     )
   }
