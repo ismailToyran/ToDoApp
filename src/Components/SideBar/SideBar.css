@@ -1,0 +1,84 @@
+.side-bar-col {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.side-bar-col h3 {
+  font-size: 18px;
+  font-family: "Roboto";
+  color: rgb(255, 255, 255);
+  line-height: 2.083;
+  text-align: center;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.side-bar-col #settings h3 {
+  color: rgb(120, 120, 120);
+}
+
+.side-bar-col h4 {
+  font-size: 16px;
+  font-family: "Roboto";
+  color: rgb(255, 255, 255);
+  line-height: 2;
+  text-align: center;
+}
+
+.side-bar-col .remaining {
+  left: 50%;
+  top: -25%;
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: rgb(173, 173, 173);
+  width: 30px;
+  height: 30px;
+}
+
+.side-bar-col img {
+  left: 50%; 
+  transform: translate(-50%,0);
+  position: relative;
+}
+
+.side-bar-col .settings-active {
+  background-color: rgb(255, 80, 63);
+  position: absolute;
+  left: 0px;
+  top: 370px;
+  width: 4px;
+  height: 111px;
+  z-index: 2;
+}
+
+.side-bar-col .tasks-active {
+  background-color: rgb(255, 80, 63);
+  position: absolute;
+  left: 0px;
+  top: 195px;
+  width: 4px;
+  height: 111px;
+  z-index: 2;
+}
+
+#profile {
+  position: absolute;
+  top: 30px;
+}
+
+#tasks {
+  position: absolute;
+  top: 230px;
+}
+
+#settings {
+  position: absolute;
+  top: 390px;
+}
+
+#close {
+  position: absolute;
+  bottom: 50px;
+}

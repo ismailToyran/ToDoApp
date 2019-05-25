@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import ToDoList from '../ToDoList/ToDoList';
 import MyVerticallyCenteredModal from '../Modal/Modal';
+import SideBar from '../SideBar/SideBar';
 
 const generateKey = (pre) => {
   return `${ pre }_${ new Date().getTime() }`;
@@ -80,7 +84,7 @@ class App extends Component {
     const newToDos = this.state.toDos.filter((toDo) =>{
       return !toDo.done
     })
-    
+
     this.setState({
       toDos: newToDos
     });
@@ -92,10 +96,10 @@ class App extends Component {
     })
   }
 
-  handleMoveUp (id) {
+  handleMoveUp (idToBeMovedUp) {
     const toDos = this.state.toDos;
 
-    const position = toDos.findIndex((i) => i.id === id)
+    const position = toDos.findIndex((index) => index.id === idToBeMovedUp)
     if (position < 0) {
       throw new Error("Given item not found.")
     } else if ( position === 0 ) {
@@ -103,7 +107,7 @@ class App extends Component {
     }
 
     const toDo = toDos[position]
-    const newToDos = toDos.filter((i) => i.id !== id)
+    const newToDos = toDos.filter((index) => index.id !== idToBeMovedUp)
     newToDos.splice(position - 1, 0, toDo)
 
     this.setState({
@@ -111,10 +115,10 @@ class App extends Component {
     })
   }
 
-  handleMoveDown (id) {
+  handleMoveDown (idToBeMovedDown) {
     const toDos = this.state.toDos;
 
-    const position = toDos.findIndex((i) => i.id === id)
+    const position = toDos.findIndex((index) => index.id === idToBeMovedDown)
     if (position < 0) {
       throw new Error("Given item not found.")
     } else if ( position === toDos.length - 1) {
@@ -122,12 +126,22 @@ class App extends Component {
     }
 
     const toDo = toDos[position]
-    const newToDos = toDos.filter((i) => i.id !== id)
+    const newToDos = toDos.filter((index) => index.id !== idToBeMovedDown)
     newToDos.splice(position + 1, 0, toDo)
 
     this.setState({
       toDos: newToDos
     })
+  }
+
+  toDos (count) {
+    if (count === "all") {
+      return this.state.toDos.length;
+    } else if (count === "completed") {
+      return this.state.toDos.filter((toDo) => { return toDo.done }).length;
+    } else if (count === "remaining") {
+      return this.state.toDos.filter((toDo) => { return !toDo.done }).length;
+    }
   }
 
   render() {
@@ -138,40 +152,52 @@ class App extends Component {
 
     return (
       <div className="App">
-        <p>ToDoApp</p>
 
-        <ButtonToolbar>
-          <Button
-            variant="danger"
-            onClick={() => this.setState({ modalShow: true })}
-          >
-            Yeni Görev Ekle
-          </Button>
+        <Container>
+          <Row>
+            <Col className="side-bar bg">
+              <SideBar remaining={this.toDos("remaining")} />
+            </Col>
+            <Col className="main-bar bg">
+              <Container>
 
-          <MyVerticallyCenteredModal
-            show={this.state.modalShow}
-            onHide={modalClose}
-            onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-            value={this.state.title}
-            onClose={this.handlePopupClose}
-          />
-        </ButtonToolbar>
+              <ButtonToolbar>
+                <Button
+                  variant="danger"
+                  onClick={() => this.setState({ modalShow: true })}
+                >
+                  Yeni Görev Ekle
+                </Button>
 
-        <p>
-          All: {this.state.toDos.length} | 
-          Completed: {this.state.toDos.filter((toDo) => {return toDo.done}).length} | 
-          Remaining: {this.state.toDos.filter((toDo) => {return !toDo.done}).length} | 
-          <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
-        </p>
+                <MyVerticallyCenteredModal
+                  show={this.state.modalShow}
+                  onHide={modalClose}
+                  onSubmit={this.handleSubmit}
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                  onClose={this.handlePopupClose}
+                />
+              </ButtonToolbar>
 
-        <ToDoList 
-          toDos={this.state.toDos}
-          handleDelete={this.handleDelete}
-          handleDone={this.handleDone}
-          handleMoveUp={this.handleMoveUp}
-          handleMoveDown={this.handleMoveDown}
-          />
+              <p>
+                All: {this.toDos("all")} |
+                Completed: {this.toDos("completed")} |
+                Remaining: {this.toDos("remaining")} |
+                <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
+              </p>
+
+              <ToDoList
+                toDos={this.state.toDos}
+                handleDelete={this.handleDelete}
+                handleDone={this.handleDone}
+                handleMoveUp={this.handleMoveUp}
+                handleMoveDown={this.handleMoveDown}
+              />
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+        
       </div>
     )
   }
