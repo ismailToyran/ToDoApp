@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 import yenileImg from './yenile.png';
 

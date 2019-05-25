@@ -8,6 +8,12 @@ a, a:hover, li {
   list-style-type: none;
 }
 
+.container {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
 .side-bar.bg {
   width: 130px;
   max-width: 130px;

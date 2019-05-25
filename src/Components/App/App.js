@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import ToDoList from '../ToDoList/ToDoList';
 import MyVerticallyCenteredModal from '../Modal/Modal';
 import SideBar from '../SideBar/SideBar';
 import Header from '../Header/Header';
+import TabSection from '../Tab/Tab';
 
 const generateKey = (pre) => {
   return `${ pre }_${ new Date().getTime() }`;
@@ -24,7 +24,8 @@ class App extends Component {
       toDos: [{id: 1, title: 'Hardcoded Task 1', done: false}, 
               {id: 2, title: 'Hardcoded Task 2', done: false}, 
               {id: 3, title: 'Hardcoded Task 3', done: false}],
-      modalShow: false
+      modalShow: false,
+      tab: 'all'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +36,7 @@ class App extends Component {
     this.handlePopupClose = this.handlePopupClose.bind(this);
     this.handleMoveUp = this.handleMoveUp.bind(this);
     this.handleMoveDown = this.handleMoveDown.bind(this);
+    this.handleTabSelect = this.handleTabSelect.bind(this);
   }
 
   handleSubmit (event) {
@@ -135,6 +137,12 @@ class App extends Component {
     })
   }
 
+  handleTabSelect (tabIndex) {
+    this.setState({
+      tab: tabIndex
+    })
+  }
+
   toDos (count) {
     if (count === "all") {
       return this.state.toDos.length;
@@ -163,6 +171,16 @@ class App extends Component {
               <Row>
               <Container>
                 <Header />
+                <TabSection activeTab={this.state.tab}
+                            onSelect={this.handleTabSelect}
+                            toDos={this.state.toDos}
+                            handleDelete={this.handleDelete}
+                            handleDone={this.handleDone}
+                            handleMoveUp={this.handleMoveUp}
+                            handleMoveDown={this.handleMoveDown}
+                            remaining={this.toDos("remaining")}
+                            />
+
               <ButtonToolbar>
                 <Button
                   variant="danger"
@@ -188,13 +206,7 @@ class App extends Component {
                 <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
               </p>
 
-              <ToDoList
-                toDos={this.state.toDos}
-                handleDelete={this.handleDelete}
-                handleDone={this.handleDone}
-                handleMoveUp={this.handleMoveUp}
-                handleMoveDown={this.handleMoveDown}
-              />
+              
               </Container>
               </Row>
             </Col>
