@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import ToDoList from '../ToDoList/ToDoList';
 import MyVerticallyCenteredModal from '../Modal/Modal';
 import SideBar from '../SideBar/SideBar';
+import Header from '../Header/Header';
 
 const generateKey = (pre) => {
   return `${ pre }_${ new Date().getTime() }`;
@@ -159,8 +160,9 @@ class App extends Component {
               <SideBar remaining={this.toDos("remaining")} />
             </Col>
             <Col className="main-bar bg">
+              <Row>
               <Container>
-
+                <Header />
               <ButtonToolbar>
                 <Button
                   variant="danger"
@@ -194,6 +196,7 @@ class App extends Component {
                 handleMoveDown={this.handleMoveDown}
               />
               </Container>
+              </Row>
             </Col>
           </Row>
         </Container>

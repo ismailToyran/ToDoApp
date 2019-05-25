@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Image from 'react-bootstrap/Image';
 
-import objectImg from './images/object.png';
-import gorevImg from './images/gorev_ikon.png';
-import ayarlarImg from './images/ayarlar_ikon.png';
-import kapatImg from './images/kapat_ikon.png';
+import objectImg from './object.png';
+import gorevImg from './gorev_ikon.png';
+import ayarlarImg from './ayarlar_ikon.png';
+import kapatImg from './kapat_ikon.png';
 
 import './SideBar.css';
 

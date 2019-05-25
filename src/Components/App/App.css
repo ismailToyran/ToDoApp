@@ -1,4 +1,4 @@
-* {
+*, .col, .row {
   margin: 0;
   padding: 0;
 }
@@ -6,16 +6,6 @@
 a, a:hover, li {
   text-decoration: none;
   list-style-type: none;
-}
-
-.col {
-  padding: 0;
-  margin: 0;
-}
-
-.row {
-  padding: 0;
-  margin: 0;  
 }
 
 .side-bar.bg {
@@ -26,5 +16,7 @@ a, a:hover, li {
   background-color: rgb(52, 58, 61);
 }
 
-.main-bar.bg {
+.main-bar .container {
+  margin: 0;
+  padding: 0;
 }
