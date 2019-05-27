@@ -18,17 +18,18 @@ class App extends Component {
     super(props);
     this.state={
       title: '',
-      toDos: [{id: 1, title: 'Hardcoded Task 1', done: false}, 
-              {id: 2, title: 'Hardcoded Task 2', done: false}, 
-              {id: 3, title: 'Hardcoded Task 3', done: false},
-              {id: 4, title: 'Hardcoded Task 4', done: false},
-              {id: 5, title: 'Hardcoded Task 5', done: false},
-              {id: 6, title: 'Hardcoded Task 6', done: false},
-              {id: 7, title: 'Hardcoded Task 7', done: true},
-              {id: 14, title: 'Hardcoded Task 8', done: true},
-              {id: 9, title: 'Hardcoded Task 9', done: true},
-              {id: 10, title: 'Hardcoded Task 10', done: true},
-              {id: 11, title: 'Hardcoded Task 11', done: true}],
+      toDos: [{id: 1, title: 'Sint amet ad eiusmod incididunt ad dolore ut dolore enim ut cillum qui.', done: false}, 
+              {id: 2, title: 'Consequat mollit sit anim laborum quis ullamco eiusmod aute eiusmod eu non occaecat laborum.', done: false}, 
+              {id: 3, title: 'Nisi ullamco eu amet dolore velit consectetur laborum.', done: false},
+              {id: 4, title: 'Commodo eiusmod Lorem ut ipsum incididunt esse Lorem velit deserunt magna.', done: false},
+              {id: 5, title: 'Duis sit ut deserunt consectetur quis do mollit dolore nisi esse anim.', done: false},
+              {id: 6, title: 'Aute culpa magna labore labore culpa do sit Lorem reprehenderit.', done: false},
+              {id: 7, title: 'Quis dolor aliquip consectetur reprehenderit occaecat sunt.', done: true},
+              {id: 14, title: 'Dolor minim mollit veniam ea sunt et deserunt.', done: true},
+              {id: 9, title: 'Occaecat quis ullamco elit amet nostrud non nisi laboris in culpa ex sunt consectetur.', done: true},
+              {id: 10, title: 'Pariatur anim nulla eu aute sunt.', done: true},
+              {id: 11, title: 'Laborum consequat consequat nulla consequat esse amet enim ipsum qui id reprehenderit.', done: true},
+              {id: 12, title: 'Lorem occaecat veniam non consectetur officia reprehenderit.', done: false}],
       toDosRemaining: [],
       toDosCompleted: [],
       filtered: [],
@@ -58,6 +59,7 @@ class App extends Component {
     this.handleMoveDownCompleted = this.handleMoveDownCompleted.bind(this);
 
     this.handleTabSelect = this.handleTabSelect.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   handleSubmit (event) {
@@ -350,6 +352,11 @@ class App extends Component {
     })
   }
 
+  handleSelectAll () {
+    // Doldurulmak istenirse sonrası için
+    console.log('clicked handleSelectAll');
+  }
+
   toDos (count) {
     if (count === "all") {
       return this.state.toDos.length;
@@ -389,6 +396,8 @@ class App extends Component {
                             handleMoveDown={this.handleMoveDown}
                             handleMoveDownRemaining={this.handleMoveDownRemaining}
                             handleMoveDownCompleted={this.handleMoveDownCompleted}
+                            handleClearCompleted={this.handleClearCompleted}
+                            handleSelectAll={this.handleSelectAll}
                             remaining={this.toDos("remaining")}
                             onClick={() => this.setState({ modalShow: true })}
                             show={this.state.modalShow}
@@ -398,19 +407,11 @@ class App extends Component {
                             onClose={this.handlePopupClose}
                             onHide={this.handleHide}
                             />
-              <p>
-                All: {this.toDos("all")} |
-                Completed: {this.toDos("completed")} |
-                Remaining: {this.toDos("remaining")} |
-                <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
-              </p>
-
               </Container>
               </Row>
             </Col>
           </Row>
         </Container>
-        
       </div>
     )
   }

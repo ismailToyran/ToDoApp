@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from '../ListItem/ListItem';
 
+import plusImg from './plus.png';
+import arrowRightImg from './arrow-right.png';
+
+import "./ToDoList.css";
+
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
@@ -30,21 +35,17 @@ class ToDoList extends Component {
     })
 
     return (
-      <div>
+      <div className="tab-item-container">
+        <div className="d-flex top-bar">
         <input
           type="text"
-          className="input"
-          placeholder="Search..."
+          className="input col-md-9"
+          placeholder="Arama..."
           value={this.state.search}
           onChange={this.handleSearch}
         />
-        <ButtonToolbar>
-          <Button
-            variant="danger"
-            onClick={this.props.onClick}
-          >
-            Yeni Görev Ekle
-                </Button>
+        <ButtonToolbar className="ml-auto">
+          <Button onClick={this.props.onClick}>Yeni Görev Ekle <img className="plus-img" src={plusImg} /></Button>
 
           <MyVerticallyCenteredModal
             show={this.props.show}
@@ -55,6 +56,7 @@ class ToDoList extends Component {
             onHide={this.props.onHide}
           />
         </ButtonToolbar>
+        </div>
         <ul>
           {filteredTitles.map((toDo) => {
             return <ListItem
@@ -66,6 +68,11 @@ class ToDoList extends Component {
               handleMoveDown={this.props.handleMoveDown.bind(null, toDo.id)} />
           })}
         </ul>
+        <hr className="line"></hr>
+        <div className="d-flex" id="choose-all">
+          <a href='#' onClick={this.props.handleSelectAll}>Hepsini Seç <img className="arrow-right-img" src={arrowRightImg} /></a>
+          <a href='#' onClick={this.props.handleClearCompleted} className="ml-auto"> Tamamlanmış görevleri sil</a>
+        </div>
       </div>
     )
   }

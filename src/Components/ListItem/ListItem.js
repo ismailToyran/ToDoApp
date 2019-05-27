@@ -7,16 +7,22 @@ class ListItem extends Component {
   render() {
 
     return (
-      <li>
-        <input
-          type="checkbox" 
-          checked={this.props.toDo.done}
-          onChange={this.props.handleDone}/>
-        {this.props.toDo.title}
-        <a href='#' onClick={this.props.handleDelete} > [x] </a>
-        <a href='#' onClick={this.props.handleMoveUp}>&#x25B2;</a>
-        <a href='#' onClick={this.props.handleMoveDown}>&#x25BC;</a>
-      </li>
+      <div className="li-container">
+        <hr className="line"></hr>
+        <li className="d-flex align-items-center">
+          <input
+            className="costum-checkbox"
+            type="checkbox"
+            checked={this.props.toDo.done}
+            onChange={this.props.handleDone} />
+          <span className={ this.props.toDo.done ? 'done col-md-9' : 'col-md-9'}>{this.props.toDo.title}</span>
+          <div className="d-flex ml-auto">
+            <a href='#' onClick={this.props.handleDelete}><div className="icon-bg text-center" id="delete-icon"></div></a>
+            <a href='#' onClick={this.props.handleMoveUp}><div className="icon-bg text-center" id="arrow-up-icon"></div></a>
+            <a href='#' onClick={this.props.handleMoveDown}><div className="icon-bg text-center" id="arrow-down-icon"></div></a>
+          </div>
+        </li>
+      </div>
     )
   }
 }

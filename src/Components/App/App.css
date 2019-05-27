@@ -22,7 +22,8 @@ a, a:hover, li {
   background-color: rgb(52, 58, 61);
 }
 
-.main-bar .container {
+.main-bar > .row {
   margin: 0;
   padding: 0;
+  height: 100vh;
 }

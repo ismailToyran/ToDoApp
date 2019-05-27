@@ -25,6 +25,8 @@ class TabSection extends Component {
 							handleDone={this.props.handleDone}
 							handleMoveUp={this.props.handleMoveUp}
 							handleMoveDown={this.props.handleMoveDown}
+							handleClearCompleted={this.props.handleClearCompleted}
+							handleSelectAll={this.props.handleSelectAll}
 							onClick={this.props.onClick}
 							show={this.props.show}
 							onSubmit={this.props.onSubmit}
@@ -43,6 +45,8 @@ class TabSection extends Component {
 							handleDone={this.props.handleDone}
 							handleMoveUp={this.props.handleMoveUpRemaining}
 							handleMoveDown={this.props.handleMoveDownRemaining}
+							handleClearCompleted={this.props.handleClearCompleted}
+							handleSelectAll={this.props.handleSelectAll}
 							onClick={this.props.onClick}
 							show={this.props.show}
 							onSubmit={this.props.onSubmit}
@@ -61,6 +65,8 @@ class TabSection extends Component {
 							handleDone={this.props.handleDone}
 							handleMoveUp={this.props.handleMoveUpCompleted}
 							handleMoveDown={this.props.handleMoveDownCompleted}
+							handleClearCompleted={this.props.handleClearCompleted}
+							handleSelectAll={this.props.handleSelectAll}
 							onClick={this.props.onClick}
 							show={this.props.show}
 							onSubmit={this.props.onSubmit}

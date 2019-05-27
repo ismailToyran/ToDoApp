@@ -1,0 +1,112 @@
+.tab-item-container {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(212, 212, 212);
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.81;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.11);
+  margin: 24px;
+  margin-right: 10%;
+}
+
+ .tab-item-container ul {
+  height: 60vh;
+  overflow-y: scroll;
+  margin-bottom: 0px;
+}
+
+/* Custom Scroll Bar */
+/* width */
+::-webkit-scrollbar {
+  width: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent url('./scrollbar.png') ;
+  border: 11px solid white;
+  border-radius: 15px;
+}
+
+.scrollbar {
+  background-color: rgb(130, 137, 143);
+  opacity: 0.302;
+  position: absolute;
+
+  height: 450px;
+  z-index: 196;
+}
+
+.top-bar {
+  margin: 20px 16px;
+}
+
+.input {
+  border: none;
+  font-size: 22px;
+  font-family: "Roboto";
+  color: rgb(193, 193, 193);
+  line-height: 1.2;
+  text-align: left;
+  text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.31);
+}
+
+.input:focus {
+  outline-color: rgb(255, 80, 63)
+}
+
+.top-bar .btn {
+  font-size: 16px;
+  font-family: "Roboto";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.top-bar .btn:focus {
+  box-shadow: none;
+}
+
+.top-bar .plus-img {
+  margin-left: 6px;
+}
+
+.btn-primary {
+  background-color: rgb(255, 80, 63);
+  border-color: rgb(255, 80, 63);
+  border-radius: 25px;
+  width: 170px;
+  height: 40px;
+}
+
+.btn-primary:hover {
+  background-color: rgb(255, 80, 63);
+  border-color: rgb(255, 80, 63);
+  border-radius: 25px;
+  width: 170px;
+  height: 40px;
+}
+
+#choose-all {
+  margin: 12px 24px;
+}
+
+#choose-all a {
+  font-size: 18px;
+  font-family: "Roboto";
+  font-weight: 600;
+  color: rgb(255, 80, 63);
+  line-height: 2.083;
+  text-align: left;
+}
+
+#choose-all img {
+  margin-left: 12px;
+}
