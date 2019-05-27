@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import "./ListItem.css";
+
 class ListItem extends Component {
   render() {
 
     return (
       <li>
+        <input
+          type="checkbox" 
+          checked={this.props.toDo.done}
+          onChange={this.props.handleDone}/>
         {this.props.toDo.title}
         <a href='#' onClick={this.props.handleDelete} > [x] </a>
         <a href='#' onClick={this.props.handleMoveUp}>&#x25B2;</a>

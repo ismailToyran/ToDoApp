@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import MyVerticallyCenteredModal from '../Modal/Modal';
 import SideBar from '../SideBar/SideBar';
 import Header from '../Header/Header';
 import TabSection from '../Tab/Tab';
@@ -48,7 +45,7 @@ class App extends Component {
 
     this.handleDone = this.handleDone.bind(this);
     this.handleOnLoad = this.handleOnLoad.bind(this);
-    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleHide = this.handleHide.bind(this);
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handlePopupClose = this.handlePopupClose.bind(this);
 
@@ -71,13 +68,14 @@ class App extends Component {
       title: title,
       done: false
     });
+
     console.log(`Form was submitted as input: ${this.state.title}`);
     this.setState({
       title: '',
-      toDos: newToDos
+      toDos: newToDos,
     });
 
-    this.handleModalClose ();
+    this.handleHide ();
   }
 
   handleChange (event) {
@@ -164,7 +162,7 @@ class App extends Component {
     });
   }
 
-  handleModalClose () {
+  handleHide () {
     this.setState({
       modalShow: false
     });
@@ -188,7 +186,8 @@ class App extends Component {
 
   handlePopupClose () {
     this.setState({
-      title: ''
+      title: '',
+      modalShow: false
     })
   }
 
@@ -390,27 +389,15 @@ class App extends Component {
                             handleMoveDown={this.handleMoveDown}
                             handleMoveDownRemaining={this.handleMoveDownRemaining}
                             handleMoveDownCompleted={this.handleMoveDownCompleted}
-                            titles={this.state.toDos}
                             remaining={this.toDos("remaining")}
+                            onClick={() => this.setState({ modalShow: true })}
+                            show={this.state.modalShow}
+                            onSubmit={this.handleSubmit}
+                            onChange={this.handleChange}
+                            value={this.state.title}
+                            onClose={this.handlePopupClose}
+                            onHide={this.handleHide}
                             />
-
-              <ButtonToolbar>
-                <Button
-                  variant="danger"
-                  onClick={() => this.setState({ modalShow: true })}
-                >
-                  Yeni Görev Ekle
-                </Button>
-
-                <MyVerticallyCenteredModal
-                  show={this.state.modalShow}
-                  onSubmit={this.handleSubmit}
-                  onChange={this.handleChange}
-                  value={this.state.title}
-                  onClose={this.handlePopupClose}
-                />
-              </ButtonToolbar>
-
               <p>
                 All: {this.toDos("all")} |
                 Completed: {this.toDos("completed")} |

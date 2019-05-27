@@ -11,7 +11,8 @@ class MyVerticallyCenteredModal extends Component {
       <Modal {...this.props}
              size="md"
              aria-labelledby="contained-modal-title-vcenter"
-             centered>
+             centered
+             keyboard>
         <Modal.Header closeButton onClick={this.props.onClose}>
           <Modal.Title id="contained-modal-title-vcenter">Yeni Görev Ekle</Modal.Title>
         </Modal.Header>
