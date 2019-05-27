@@ -6,12 +6,6 @@ class ListItem extends Component {
 
     return (
       <li>
-        <input
-          type='checkbox'
-          checked={this.props.toDo.done}
-          onChange={this.props.handleDone}
-          style={{ fontSize: 'x-large' }}
-        />
         {this.props.toDo.title}
         <a href='#' onClick={this.props.handleDelete} > [x] </a>
         <a href='#' onClick={this.props.handleMoveUp}>&#x25B2;</a>

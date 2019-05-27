@@ -3,11 +3,38 @@ import PropTypes from 'prop-types';
 import ListItem from '../ListItem/ListItem';
 
 class ToDoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      search: event.target.value.substr(0, 20)
+    });
+  }
 
   render() {
+
+    let filteredTitles = this.props.toDos.filter((search) => {
+      return search.title.indexOf(this.state.search) !== -1;
+    })
+
     return (
+      <div>
+      <input 
+						type="text" 
+						className="input" 
+            placeholder="Search..." 
+            value={this.state.search}
+						onChange={this.handleChange}
+						/>
       <ul>
-        { this.props.toDos.map((toDo) => {
+        { filteredTitles.map((toDo) => {
           return <ListItem 
                    key={toDo.id}
                    toDo={toDo}
@@ -17,6 +44,7 @@ class ToDoList extends Component {
                    handleMoveDown={this.props.handleMoveDown.bind(null, toDo.id)} />
         }) }
       </ul>
+      </div>
     )
   }
 }

@@ -28,7 +28,7 @@ class MyVerticallyCenteredModal extends Component {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onSubmit} onClickCapture={this.props.onHide} >Ekle</Button>
+          <Button onClick={this.props.onSubmit} >Ekle</Button>
         </Modal.Footer>
       </Modal>
     )
@@ -38,8 +38,7 @@ class MyVerticallyCenteredModal extends Component {
 MyVerticallyCenteredModal.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onHide: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default MyVerticallyCenteredModal;

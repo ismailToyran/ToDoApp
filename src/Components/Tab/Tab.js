@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Container from 'react-bootstrap/Container';
 
 import ToDoList from '../ToDoList/ToDoList';
 
@@ -14,33 +15,41 @@ class TabSection extends Component {
   render() {
     return (
 			<Tabs activeKey={this.props.activeTab}
-						onSelect={this.props.onSelect} >
+				  onSelect={this.props.onSelect} 
+				  onClick={this.props.handleOnLoad} >
 				<Tab eventKey="all" title={<span><img src={allImg} /> Tüm Görevler </span>}>
+					<Container>
 					<ToDoList
 						toDos={this.props.toDos}
 						handleDelete={this.props.handleDelete}
 						handleDone={this.props.handleDone}
 						handleMoveUp={this.props.handleMoveUp}
 						handleMoveDown={this.props.handleMoveDown}
+						titles={this.props.titles}
 					/>
+					</Container>
 				</Tab>
-				<Tab eventKey="remaining" title={<span><img src={completedImg} /> Aktif Görevler<h4 className="remaining" >{this.props.remaining}</h4></span>}>
+				<Tab eventKey="remaining" title={<span><img src={remainingImg} /> Aktif Görevler<h4 className="remaining" >{this.props.remaining}</h4></span>}>
+					<Container>
 					<ToDoList
-						toDos={this.props.toDos}
-						handleDelete={this.props.handleDelete}
+						toDos={this.props.toDosRemaining}
+						handleDelete={this.props.handleDeleteRemaining}
 						handleDone={this.props.handleDone}
-						handleMoveUp={this.props.handleMoveUp}
-						handleMoveDown={this.props.handleMoveDown}
+						handleMoveUp={this.props.handleMoveUpRemaining}
+						handleMoveDown={this.props.handleMoveDownRemaining}
 					/>
+					</Container>
 				</Tab>
-				<Tab eventKey="completed" title={<span><img src={remainingImg} /> Biten Görevler </span>}>
+				<Tab eventKey="completed" title={<span><img src={completedImg} /> Biten Görevler </span>}>
+					<Container>
 					<ToDoList
-						toDos={this.props.toDos}
-						handleDelete={this.props.handleDelete}
+						toDos={this.props.toDosCompleted}
+						handleDelete={this.props.handleDeleteCompleted}
 						handleDone={this.props.handleDone}
-						handleMoveUp={this.props.handleMoveUp}
-						handleMoveDown={this.props.handleMoveDown}
+						handleMoveUp={this.props.handleMoveUpCompleted}
+						handleMoveDown={this.props.handleMoveDownCompleted}
 					/>
+					</Container>
 				</Tab>
 			</Tabs>
     )

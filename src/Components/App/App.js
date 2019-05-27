@@ -23,19 +23,43 @@ class App extends Component {
       title: '',
       toDos: [{id: 1, title: 'Hardcoded Task 1', done: false}, 
               {id: 2, title: 'Hardcoded Task 2', done: false}, 
-              {id: 3, title: 'Hardcoded Task 3', done: false}],
+              {id: 3, title: 'Hardcoded Task 3', done: false},
+              {id: 4, title: 'Hardcoded Task 4', done: false},
+              {id: 5, title: 'Hardcoded Task 5', done: false},
+              {id: 6, title: 'Hardcoded Task 6', done: false},
+              {id: 7, title: 'Hardcoded Task 7', done: true},
+              {id: 14, title: 'Hardcoded Task 8', done: true},
+              {id: 9, title: 'Hardcoded Task 9', done: true},
+              {id: 10, title: 'Hardcoded Task 10', done: true},
+              {id: 11, title: 'Hardcoded Task 11', done: true}],
+      toDosRemaining: [],
+      toDosCompleted: [],
+      filtered: [],
       modalShow: false,
       tab: 'all'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteRemaining = this.handleDeleteRemaining.bind(this);
+    this.handleDeleteCompleted = this.handleDeleteCompleted.bind(this);
+
     this.handleDone = this.handleDone.bind(this);
+    this.handleOnLoad = this.handleOnLoad.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handlePopupClose = this.handlePopupClose.bind(this);
+
     this.handleMoveUp = this.handleMoveUp.bind(this);
+    this.handleMoveUpRemaining = this.handleMoveUpRemaining.bind(this);
+    this.handleMoveUpCompleted = this.handleMoveUpCompleted.bind(this);
+
     this.handleMoveDown = this.handleMoveDown.bind(this);
+    this.handleMoveDownRemaining = this.handleMoveDownRemaining.bind(this);
+    this.handleMoveDownCompleted = this.handleMoveDownCompleted.bind(this);
+
     this.handleTabSelect = this.handleTabSelect.bind(this);
   }
 
@@ -52,6 +76,8 @@ class App extends Component {
       title: '',
       toDos: newToDos
     });
+
+    this.handleModalClose ();
   }
 
   handleChange (event) {
@@ -70,6 +96,44 @@ class App extends Component {
     this.setState({
       toDos: newToDos
     });
+
+    this.handleOnLoad ();
+  }
+
+  handleDeleteRemaining (idToBeDeletedFromRemaining) {
+    this.handleOnLoad ();
+    
+    const newToDos = this.state.toDos.filter((toDo) => {
+      return toDo.id !== idToBeDeletedFromRemaining
+    });
+
+    const newToDosRemaining = this.state.toDosRemaining.filter((toDo) => {
+      return toDo.id !== idToBeDeletedFromRemaining
+    });
+
+    console.log(`${idToBeDeletedFromRemaining} got deleted from the List`);
+    this.setState({
+      toDos: newToDos,
+      toDosRemaining: newToDosRemaining
+    });
+  }
+
+  handleDeleteCompleted (idToBeDeletedFromCompleted) {
+    this.handleOnLoad ();
+    
+    const newToDos = this.state.toDos.filter((toDo) => {
+      return toDo.id !== idToBeDeletedFromCompleted
+    });
+
+    const newToDosCompleted = this.state.toDosCompleted.filter((toDo) => {
+      return toDo.id !== idToBeDeletedFromCompleted
+    });
+
+    console.log(`${idToBeDeletedFromCompleted} got deleted from the List`);
+    this.setState({
+      toDos: newToDos,
+      toDosCompleted: newToDosCompleted
+    });
   }
 
   handleDone (idToBeMarkedAsDone) {
@@ -81,15 +145,44 @@ class App extends Component {
     this.setState({
       toDos: this.state.toDos
     });
+
+    this.handleOnLoad ();
+  }
+
+  handleOnLoad () {
+    const newToDosRemaining = this.state.toDos.filter((toDo) => {
+      return !toDo.done
+    });
+
+    const newToDosCompleted = this.state.toDos.filter((toDo) => {
+      return toDo.done
+    });
+
+    this.setState({
+      toDosRemaining: newToDosRemaining,
+      toDosCompleted: newToDosCompleted
+    });
+  }
+
+  handleModalClose () {
+    this.setState({
+      modalShow: false
+    });
   }
 
   handleClearCompleted () {
+    this.handleOnLoad();
     const newToDos = this.state.toDos.filter((toDo) =>{
       return !toDo.done
     })
 
+    const newToDosCompleted = this.state.toDosCompleted.filter((toDo) =>{
+      return !toDo.done
+    })
+
     this.setState({
-      toDos: newToDos
+      toDos: newToDos,
+      toDosCompleted: newToDosCompleted
     });
   }
 
@@ -100,41 +193,156 @@ class App extends Component {
   }
 
   handleMoveUp (idToBeMovedUp) {
-    const toDos = this.state.toDos;
-
-    const position = toDos.findIndex((index) => index.id === idToBeMovedUp)
+    const position = this.state.toDos.findIndex((index) => index.id === idToBeMovedUp)
     if (position < 0) {
       throw new Error("Given item not found.")
     } else if ( position === 0 ) {
       return
     }
 
-    const toDo = toDos[position]
-    const newToDos = toDos.filter((index) => index.id !== idToBeMovedUp)
+    const toDo = this.state.toDos[position]
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedUp)
     newToDos.splice(position - 1, 0, toDo)
 
     this.setState({
       toDos: newToDos
-    })
+    });
+    this.handleOnLoad();
   }
 
-  handleMoveDown (idToBeMovedDown) {
-    const toDos = this.state.toDos;
+  handleMoveUpRemaining (idToBeMovedUp) {
+    this.handleOnLoad();
 
-    const position = toDos.findIndex((index) => index.id === idToBeMovedDown)
+    const position = this.state.toDosRemaining.findIndex((index) => index.id === idToBeMovedUp)
     if (position < 0) {
       throw new Error("Given item not found.")
-    } else if ( position === toDos.length - 1) {
+    } else if ( position === 0 ) {
       return
     }
 
-    const toDo = toDos[position]
-    const newToDos = toDos.filter((index) => index.id !== idToBeMovedDown)
+    const toDoRemaining = this.state.toDosRemaining[position]
+    const newToDosRemaining = this.state.toDosRemaining.filter((index) => index.id !== idToBeMovedUp)
+    newToDosRemaining.splice(position - 1, 0, toDoRemaining)
+
+    const positionOrigin = this.state.toDos.findIndex((index) => index.id === idToBeMovedUp)
+    const toDo = this.state.toDos[positionOrigin]
+
+    const switchId = this.state.toDosRemaining[position - 1].id
+    const switchPosition = this.state.toDos.map((index) => index.id).indexOf(switchId);
+
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedUp)
+    newToDos.splice(switchPosition, 0, toDo)
+
+    this.setState({
+      toDos: newToDos,
+      toDosRemaining: newToDosRemaining
+    });
+  }
+
+  handleMoveUpCompleted (idToBeMovedUp) {
+    this.handleOnLoad();
+
+    const position = this.state.toDosCompleted.findIndex((index) => index.id === idToBeMovedUp)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === 0 ) {
+      return
+    }
+
+    const toDoCompleted = this.state.toDosCompleted[position]
+    const newToDosCompleted = this.state.toDosCompleted.filter((index) => index.id !== idToBeMovedUp)
+    newToDosCompleted.splice(position - 1, 0, toDoCompleted)
+
+    const positionOrigin = this.state.toDos.findIndex((index) => index.id === idToBeMovedUp)
+    const toDo = this.state.toDos[positionOrigin]
+
+    const switchId = this.state.toDosCompleted[position - 1].id
+    const switchPosition = this.state.toDos.map((index) => index.id).indexOf(switchId);
+
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedUp)
+    newToDos.splice(switchPosition, 0, toDo)
+
+    this.setState({
+      toDos: newToDos,
+      toDosCompleted: newToDosCompleted
+    });
+  }
+
+  handleMoveDown (idToBeMovedDown) {
+    const position = this.state.toDos.findIndex((index) => index.id === idToBeMovedDown)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === this.state.toDos.length - 1) {
+      return
+    }
+
+    const toDo = this.state.toDos[position]
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedDown)
     newToDos.splice(position + 1, 0, toDo)
 
     this.setState({
       toDos: newToDos
-    })
+    });
+
+    this.handleOnLoad();
+  }
+
+  handleMoveDownRemaining (idToBeMovedDown) {
+    this.handleOnLoad();
+
+    const position = this.state.toDosRemaining.findIndex((index) => index.id === idToBeMovedDown)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === this.state.toDosRemaining.length - 1) {
+      return
+    }
+
+    const toDoRemaining = this.state.toDosRemaining[position]
+    const newToDosRemaining = this.state.toDosRemaining.filter((index) => index.id !== idToBeMovedDown)
+    newToDosRemaining.splice(position + 1, 0, toDoRemaining)
+
+    const positionOrigin = this.state.toDos.findIndex((index) => index.id === idToBeMovedDown)
+    const toDo = this.state.toDos[positionOrigin]
+
+    const switchId = this.state.toDosRemaining[position + 1].id
+    const switchPosition = this.state.toDos.map((index) => index.id).indexOf(switchId);
+
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedDown)
+    newToDos.splice(switchPosition, 0, toDo)
+
+    this.setState({
+      toDos: newToDos,
+      toDosRemaining: newToDosRemaining
+    });
+  }
+
+  handleMoveDownCompleted (idToBeMovedDown) {
+    this.handleOnLoad();
+
+    const position = this.state.toDosCompleted.findIndex((index) => index.id === idToBeMovedDown)
+    if (position < 0) {
+      throw new Error("Given item not found.")
+    } else if ( position === this.state.toDosCompleted.length - 1) {
+      return
+    }
+
+    const toDoCompleted = this.state.toDosCompleted[position]
+    const newToDosCompleted = this.state.toDosCompleted.filter((index) => index.id !== idToBeMovedDown)
+    newToDosCompleted.splice(position + 1, 0, toDoCompleted)
+
+    const positionOrigin = this.state.toDos.findIndex((index) => index.id === idToBeMovedDown)
+    const toDo = this.state.toDos[positionOrigin]
+
+    const switchId = this.state.toDosCompleted[position + 1].id
+    const switchPosition = this.state.toDos.map((index) => index.id).indexOf(switchId);
+
+    const newToDos = this.state.toDos.filter((index) => index.id !== idToBeMovedDown)
+    newToDos.splice(switchPosition, 0, toDo)
+
+    this.setState({
+      toDos: newToDos,
+      toDosCompleted: newToDosCompleted
+    });
   }
 
   handleTabSelect (tabIndex) {
@@ -154,11 +362,6 @@ class App extends Component {
   }
 
   render() {
-
-    let modalClose = () => this.setState({
-      modalShow: false 
-    });
-
     return (
       <div className="App">
 
@@ -174,10 +377,20 @@ class App extends Component {
                 <TabSection activeTab={this.state.tab}
                             onSelect={this.handleTabSelect}
                             toDos={this.state.toDos}
+                            toDosRemaining={this.state.toDosRemaining}
+                            toDosCompleted={this.state.toDosCompleted}
                             handleDelete={this.handleDelete}
+                            handleDeleteRemaining={this.handleDeleteRemaining}
+                            handleDeleteCompleted={this.handleDeleteCompleted}
                             handleDone={this.handleDone}
+                            handleOnLoad={this.handleOnLoad}
                             handleMoveUp={this.handleMoveUp}
+                            handleMoveUpRemaining={this.handleMoveUpRemaining}
+                            handleMoveUpCompleted={this.handleMoveUpCompleted}
                             handleMoveDown={this.handleMoveDown}
+                            handleMoveDownRemaining={this.handleMoveDownRemaining}
+                            handleMoveDownCompleted={this.handleMoveDownCompleted}
+                            titles={this.state.toDos}
                             remaining={this.toDos("remaining")}
                             />
 
@@ -191,7 +404,6 @@ class App extends Component {
 
                 <MyVerticallyCenteredModal
                   show={this.state.modalShow}
-                  onHide={modalClose}
                   onSubmit={this.handleSubmit}
                   onChange={this.handleChange}
                   value={this.state.title}
@@ -206,7 +418,6 @@ class App extends Component {
                 <a href='#' onClick={this.handleClearCompleted}> Clear completed tasks</a>
               </p>
 
-              
               </Container>
               </Row>
             </Col>
