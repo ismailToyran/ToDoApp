@@ -33,7 +33,8 @@ class App extends Component {
       toDosRemaining: [],
       toDosCompleted: [],
       filtered: [],
-      modalShow: false,
+      addModalShow: false,
+      viewModalShow: false,
       tab: 'all'
     }
 
@@ -166,7 +167,8 @@ class App extends Component {
 
   handleHide () {
     this.setState({
-      modalShow: false
+      addModalShow: false,
+      viewModalShow: false
     });
   }
 
@@ -189,7 +191,7 @@ class App extends Component {
   handlePopupClose () {
     this.setState({
       title: '',
-      modalShow: false
+      addModalShow: false
     })
   }
 
@@ -399,13 +401,15 @@ class App extends Component {
                             handleClearCompleted={this.handleClearCompleted}
                             handleSelectAll={this.handleSelectAll}
                             remaining={this.toDos("remaining")}
-                            onClick={() => this.setState({ modalShow: true })}
-                            show={this.state.modalShow}
+                            onClickAdd={() => this.setState({ addModalShow: true })}
+                            onClickView={() => this.setState({ viewModalShow: true })}
+                            showAdd={this.state.addModalShow}
+                            showView={this.state.viewModalShow}
+                            onHide={this.handleHide}
                             onSubmit={this.handleSubmit}
                             onChange={this.handleChange}
                             value={this.state.title}
                             onClose={this.handlePopupClose}
-                            onHide={this.handleHide}
                             />
               </Container>
               </Row>

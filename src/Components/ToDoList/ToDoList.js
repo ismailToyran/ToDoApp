@@ -10,7 +10,7 @@ import "./ToDoList.css";
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
-import MyVerticallyCenteredModal from '../Modal/Modal';
+import MyModalSubmit from '../Modal/MyModalSubmit';
 
 class ToDoList extends Component {
   constructor(props) {
@@ -39,22 +39,22 @@ class ToDoList extends Component {
         <div className="d-flex top-bar">
         <input
           type="text"
-          className="input col-md-9"
+          className="input col-md-8"
           placeholder="Arama..."
           value={this.state.search}
           onChange={this.handleSearch}
-        />
+          />
         <ButtonToolbar className="ml-auto">
-          <Button onClick={this.props.onClick}>Yeni Görev Ekle <img className="plus-img" src={plusImg} /></Button>
+          <Button onClick={this.props.onClickAdd}>{this.props.checkWidth ? '' : 'Yeni Görev Ekle '}<img className="plus-img" src={plusImg} /></Button>
 
-          <MyVerticallyCenteredModal
-            show={this.props.show}
+          <MyModalSubmit
+            show={this.props.showAdd}
             onSubmit={this.props.onSubmit}
             onChange={this.props.onChange}
             value={this.props.value}
             onClose={this.props.onClose}
             onHide={this.props.onHide}
-          />
+            />
         </ButtonToolbar>
         </div>
         <ul>
@@ -62,16 +62,24 @@ class ToDoList extends Component {
             return <ListItem
               key={toDo.id}
               toDo={toDo}
+              toDos={this.props.toDos}
               handleDone={this.props.handleDone.bind(null, toDo.id)}
               handleDelete={this.props.handleDelete.bind(null, toDo.id)}
               handleMoveUp={this.props.handleMoveUp.bind(null, toDo.id)}
-              handleMoveDown={this.props.handleMoveDown.bind(null, toDo.id)} />
+              handleMoveDown={this.props.handleMoveDown.bind(null, toDo.id)} 
+              checkWidth={this.props.checkWidth}
+              onClickView={this.props.onClickView}
+              showView={this.props.showView}
+              onHide={this.props.onHide}
+              onChange={this.props.onChange}
+              value={this.props.value}
+              />
           })}
         </ul>
         <hr className="line"></hr>
-        <div className="d-flex" id="choose-all">
-          <a href='#' onClick={this.props.handleSelectAll}>Hepsini Seç <img className="arrow-right-img" src={arrowRightImg} /></a>
-          <a href='#' onClick={this.props.handleClearCompleted} className="ml-auto"> Tamamlanmış görevleri sil</a>
+        <div className="d-flex" id="bottom-bar">
+          <a href='#' id="choose-all" onClick={this.props.handleSelectAll}>Hepsini Seç <img className="arrow-right-img" src={arrowRightImg} /></a>
+          <a href='#' id="delete-completed" onClick={this.props.handleClearCompleted} className="ml-auto"> Tamamlanmış görevleri sil</a>
         </div>
       </div>
     )

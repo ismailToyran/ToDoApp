@@ -12,12 +12,42 @@ import remainingImg from './remaining.png';
 import './Tab.css';
 
 class TabSection extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+		  tasks: ''
+		}
+		this.handleTasks = this.handleTasks.bind(this);
+	  }
+
+	  handleTasks = () => {
+		if (window.innerWidth <= 540) {
+			this.setState({
+				tasks: true
+			});
+		} else {
+			this.setState({
+				tasks: false
+			});
+		}
+	};
+	
+	  componentDidMount() {
+		window.addEventListener("resize", this.handleTasks);
+		window.addEventListener("load", this.handleTasks);
+	}
+	
+	  componentWillUnmount() {
+		window.removeEventListener("resize", this.handleTasks);
+		window.removeEventListener("load", this.handleTasks);
+	}
+
 	render() {
 		return (
 			<Tabs activeKey={this.props.activeTab}
 				onSelect={this.props.onSelect}
 				onClick={this.props.handleOnLoad} >
-				<Tab eventKey="all" title={<span><img src={allImg} /> Tüm Görevler </span>}>
+				<Tab eventKey="all" title={<span><img src={allImg} /> {this.state.tasks ? 'Tüm' : 'Tüm Görevler'} </span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDos}
@@ -27,17 +57,20 @@ class TabSection extends Component {
 							handleMoveDown={this.props.handleMoveDown}
 							handleClearCompleted={this.props.handleClearCompleted}
 							handleSelectAll={this.props.handleSelectAll}
-							onClick={this.props.onClick}
-							show={this.props.show}
+							onClickAdd={this.props.onClickAdd}
+                            onClickView={this.props.onClickView}
+                            showAdd={this.props.showAdd}
+                            showView={this.props.showView}
 							onSubmit={this.props.onSubmit}
 							onChange={this.props.onChange}
 							value={this.props.value}
 							onClose={this.props.onClose}
 							onHide={this.props.onHide}
+							checkWidth={this.state.tasks}
 						/>
 					</Container>
 				</Tab>
-				<Tab eventKey="remaining" title={<span><img src={remainingImg} /> Aktif Görevler<h4 className="remaining" >{this.props.remaining}</h4></span>}>
+				<Tab eventKey="remaining" title={<span><img src={remainingImg} /> {this.state.tasks ? 'Aktif' : 'Aktif Görevler'} <h4 className="remaining" >{this.props.remaining}</h4></span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDosRemaining}
@@ -47,17 +80,20 @@ class TabSection extends Component {
 							handleMoveDown={this.props.handleMoveDownRemaining}
 							handleClearCompleted={this.props.handleClearCompleted}
 							handleSelectAll={this.props.handleSelectAll}
-							onClick={this.props.onClick}
-							show={this.props.show}
+							onClickAdd={this.props.onClickAdd}
+                            onClickView={this.props.onClickView}
+                            showAdd={this.props.showAdd}
+                            showView={this.props.showView}
 							onSubmit={this.props.onSubmit}
 							onChange={this.props.onChange}
 							value={this.props.value}
 							onClose={this.props.onClose}
 							onHide={this.props.onHide}
+							checkWidth={this.state.tasks}
 						/>
 					</Container>
 				</Tab>
-				<Tab eventKey="completed" title={<span><img src={completedImg} /> Biten Görevler </span>}>
+				<Tab eventKey="completed" title={<span><img src={completedImg} /> {this.state.tasks ? 'Biten' : 'Biten Görevler'} </span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDosCompleted}
@@ -67,13 +103,16 @@ class TabSection extends Component {
 							handleMoveDown={this.props.handleMoveDownCompleted}
 							handleClearCompleted={this.props.handleClearCompleted}
 							handleSelectAll={this.props.handleSelectAll}
-							onClick={this.props.onClick}
-							show={this.props.show}
+							onClickAdd={this.props.onClickAdd}
+                            onClickView={this.props.onClickView}
+                            showAdd={this.props.showAdd}
+                            showView={this.props.showView}
 							onSubmit={this.props.onSubmit}
 							onChange={this.props.onChange}
 							value={this.props.value}
 							onClose={this.props.onClose}
 							onHide={this.props.onHide}
+							checkWidth={this.state.tasks}
 						/>
 					</Container>
 				</Tab>

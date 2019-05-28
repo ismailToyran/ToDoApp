@@ -1,0 +1,41 @@
+#contained-modal-title-vcenter .icon-bg {
+    border: 1px solid rgba(164, 164, 164, 0.53);
+    border-radius: 50%;
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.52);
+    width: 32px;
+    height: 32px;
+  }
+  #contained-modal-title-vcenter .icon-bg:hover {
+    background-color: rgb(255, 80, 63);
+    border-color: rgb(255, 80, 63);
+  }
+
+#contained-modal-title-vcenter #delete-icon {
+    background-image: url('../ListItem/erase.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  #contained-modal-title-vcenter #delete-icon:hover {
+    background-image: url('../ListItem/erase-white.png');
+  }
+  
+  #contained-modal-title-vcenter #arrow-up-icon {
+    background-image: url('../ListItem/arrow-up.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+ #contained-modal-title-vcenter #arrow-up-icon:hover {
+    background-image: url('../ListItem/arrow-up-white.png');
+  }
+  
+#contained-modal-title-vcenter #arrow-down-icon {
+    background-image: url('../ListItem/arrow-down.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+#contained-modal-title-vcenter #arrow-down-icon:hover {
+    background-image: url('../ListItem/arrow-down-white.png');
+  }

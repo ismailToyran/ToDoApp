@@ -1,21 +1,16 @@
 .side-bar-col {
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 100%;
 }
 
 .side-bar-col h3 {
   font-size: 18px;
   font-family: "Roboto";
-  color: rgb(255, 255, 255);
+  color: rgb(120, 120, 120);
   line-height: 2.083;
   text-align: center;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35);
-}
-
-.side-bar-col #settings h3 {
-  color: rgb(120, 120, 120);
 }
 
 .side-bar-col h4 {
@@ -63,6 +58,14 @@
   z-index: 2;
 }
 
+.h3-white h3 {
+  color: rgb(255, 255, 255);
+}
+
+.h3-grey h3 {
+  color: rgb(120, 120, 120);
+}
+
 #profile {
   position: absolute;
   top: 30px;
@@ -73,9 +76,25 @@
   top: 230px;
 }
 
+#tasks:hover img {
+  background-image: url('./gorev_ikon_hover.png');
+}
+
+#tasks:hover h3 {
+  color: rgb(255, 255, 255);
+}
+
 #settings {
   position: absolute;
   top: 390px;
+}
+
+#settings:hover img {
+  background-image: url('./ayarlar_ikon_hover.png');
+}
+
+#settings:hover h3 {
+  color: rgb(255, 255, 255);
 }
 
 #close {

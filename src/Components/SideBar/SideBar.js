@@ -3,7 +3,9 @@ import Image from 'react-bootstrap/Image';
 
 import objectImg from './object.png';
 import gorevImg from './gorev_ikon.png';
+import gorevImgHover from './gorev_ikon_hover.png';
 import ayarlarImg from './ayarlar_ikon.png';
+import ayarlarImgHover from './ayarlar_ikon_hover.png';
 import kapatImg from './kapat_ikon.png';
 
 import './SideBar.css';
@@ -39,14 +41,14 @@ class SideBar extends Component {
           <Image src={objectImg} className="img-responsive" />
         </div></a>
 
-        <a href="#tasks" id="tasks" className="active" onClick={this.handleClickTasks} ><div>
+        <a href="#tasks" id="tasks" className={!this.state.isClicked ? 'h3-white' : 'h3-grey'} onClick={this.handleClickTasks} ><div>
           <h4 className="remaining" >{this.props.remaining}</h4>
-          <Image src={gorevImg} className="img-responsive abs-img-center" />
+          <Image src={this.state.isClicked ? gorevImg : gorevImgHover} className="img-responsive abs-img-center" />
           <h3>Görevler</h3>
         </div></a>
 
-        <a href="#settings" id="settings" onClick={this.handleClickSettings} ><div>
-          <Image src={ayarlarImg} className="img-responsive" />
+        <a href="#settings" id="settings" className={this.state.isClicked ? 'h3-white' : 'h3-grey'} onClick={this.handleClickSettings} ><div>
+          <Image src={this.state.isClicked ? ayarlarImgHover : ayarlarImg} className="img-responsive" />
           <h3>Ayarlar</h3>
         </div></a>
 

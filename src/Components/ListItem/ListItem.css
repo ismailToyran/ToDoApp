@@ -10,6 +10,12 @@ li {
   text-align: left;
 }
 
+li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 hr {
   background-color: white;
   width: 100%;
@@ -81,4 +87,10 @@ hr {
 
 .li-container #arrow-down-icon:hover {
   background-image: url('./arrow-down-white.png');
+}
+
+@media only screen and (max-width: 540px) {
+  .view-width {
+    width: 70vw;
+  }
 }
