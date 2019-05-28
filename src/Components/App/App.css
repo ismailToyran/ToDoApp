@@ -19,8 +19,8 @@ a, a:hover, li {
   width: 130px;
   max-width: 130px;
   height: 100vh;
-  min-height: 641x;
-  position: absolute;
+  min-height: 700px;
+  position: fixed;
   background-color: rgb(52, 58, 61);
   z-index: 5;
 }
@@ -44,5 +44,11 @@ a, a:hover, li {
 @media only screen and (min-width: 750px) {
   .main-bar.bg > .row > .container {
     margin-left: 130px;
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  .side-bar.bg {
+    position: absolute;
   }
 }

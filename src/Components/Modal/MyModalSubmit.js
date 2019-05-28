@@ -20,7 +20,7 @@ class MyModalSubmit extends Component {
           <Form>
             <Form.Control 
                           type="text" 
-                          placeholder="Normal text" 
+                          placeholder="Amet quis magna eiusmod ea exercitation ullamco labore culpa." 
                           as="textarea" 
                           rows="3"
                           onChange={this.props.onChange}
@@ -29,7 +29,7 @@ class MyModalSubmit extends Component {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onSubmit} >Ekle</Button>
+          <Button onClick={this.props.onSubmit} >EKLE</Button>
         </Modal.Footer>
       </Modal>
     )

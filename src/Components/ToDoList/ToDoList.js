@@ -22,6 +22,7 @@ class ToDoList extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
+  // Search fonksiyonu - Arama işlemini gerçekleştiriyor. Şu anda büyük harf kullanımına duyarlı. Gerekli olması durumunda toLowerCase uygulanabilir.
   handleSearch(event) {
     this.setState({
       search: event.target.value.substr(0, 20)
@@ -40,12 +41,13 @@ class ToDoList extends Component {
         <input
           type="text"
           className="input col-md-8"
+          aria-label="Search titles"
           placeholder="Arama..."
           value={this.state.search}
           onChange={this.handleSearch}
           />
         <ButtonToolbar className="ml-auto">
-          <Button onClick={this.props.onClickAdd}>{this.props.checkWidth ? '' : 'Yeni Görev Ekle '}<img className="plus-img" src={plusImg} /></Button>
+          <Button onClick={this.props.onClickAdd}>{this.props.checkWidth ? '' : 'Yeni Görev Ekle '}<img className="plus-img" alt='Plus icon' src={plusImg} /></Button>
 
           <MyModalSubmit
             show={this.props.showAdd}
@@ -57,6 +59,7 @@ class ToDoList extends Component {
             />
         </ButtonToolbar>
         </div>
+        <hr className="line"></hr>
         <ul>
           {filteredTitles.map((toDo) => {
             return <ListItem
@@ -77,9 +80,9 @@ class ToDoList extends Component {
           })}
         </ul>
         <hr className="line"></hr>
-        <div className="d-flex" id="bottom-bar">
-          <a href='#' id="choose-all" onClick={this.props.handleSelectAll}>Hepsini Seç <img className="arrow-right-img" src={arrowRightImg} /></a>
-          <a href='#' id="delete-completed" onClick={this.props.handleClearCompleted} className="ml-auto"> Tamamlanmış görevleri sil</a>
+        <div className="d-flex bottom-bar">
+          <a href='#tasks' id="choose-all" onClick={this.props.handleSelectAll}>Hepsini Seç <img className="arrow-right-img" src={arrowRightImg} alt='Higher than icon'/></a>
+          <a href='#tasks' id="delete-completed" onClick={this.props.handleClearCompleted} className="ml-auto"> Tamamlanmış görevleri sil</a>
         </div>
       </div>
     )

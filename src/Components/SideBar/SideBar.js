@@ -21,6 +21,7 @@ class SideBar extends Component {
     this.handleClickTasks = this.handleClickTasks.bind(this);
   }
 
+  // Sol taraftaki kırmızı banner ve simgelerin altında ki colorlar için fonksiyonlar
   handleClickSettings() {
     this.setState({isClicked: true});
   }

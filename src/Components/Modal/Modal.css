@@ -1,41 +1,113 @@
+.modal-body {
+  padding: 1rem 2rem;
+}
+
+.form-control {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(212, 212, 212);
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: "Roboto";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  padding: 1rem 1.5rem;
+}
+
+.form-control:focus {
+  border-color:  rgb(212, 212, 212);
+  box-shadow: none;
+}
+
+.modal-content {
+  border-radius: 15px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-family: "Roboto";
+  color: rgb(255, 80, 63);
+  line-height: 1.4;
+  font-weight: 600;
+  margin-top: 36px;
+  margin-left: 18px;
+}
+
+.modal-header {
+  padding-bottom: 0;
+  border: none;
+}
+
+.modal-header .close {
+  border: 1px solid rgb(255, 80, 63);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  background-color: rgb(255, 80, 63);
+  opacity: 1;
+  font-size: 16px;
+}
+
+.modal-footer {
+  justify-content: center;
+  border: none;
+}
+
+.modal-footer button {
+  width: 180px;
+  margin-bottom: 36px;
+  font-size: 20px;
+  height: auto;
+}
+
+.modal-footer button:hover {
+  width: 180px;
+  height: auto;
+}
+
 #contained-modal-title-vcenter .icon-bg {
-    border: 1px solid rgba(164, 164, 164, 0.53);
-    border-radius: 50%;
-    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.52);
-    width: 32px;
-    height: 32px;
-  }
-  #contained-modal-title-vcenter .icon-bg:hover {
-    background-color: rgb(255, 80, 63);
-    border-color: rgb(255, 80, 63);
-  }
+  border: 1px solid rgba(164, 164, 164, 0.53);
+  border-radius: 50%;
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.52);
+  width: 32px;
+  height: 32px;
+}
+
+#contained-modal-title-vcenter .icon-bg:hover {
+  background-color: rgb(255, 80, 63);
+  border-color: rgb(255, 80, 63);
+}
 
 #contained-modal-title-vcenter #delete-icon {
-    background-image: url('../ListItem/erase.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  #contained-modal-title-vcenter #delete-icon:hover {
-    background-image: url('../ListItem/erase-white.png');
-  }
-  
-  #contained-modal-title-vcenter #arrow-up-icon {
-    background-image: url('../ListItem/arrow-up.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
- #contained-modal-title-vcenter #arrow-up-icon:hover {
-    background-image: url('../ListItem/arrow-up-white.png');
-  }
-  
+  background-image: url('../ListItem/erase.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#contained-modal-title-vcenter #delete-icon:hover {
+  background-image: url('../ListItem/erase-white.png');
+}
+
+#contained-modal-title-vcenter #arrow-up-icon {
+  background-image: url('../ListItem/arrow-up.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#contained-modal-title-vcenter #arrow-up-icon:hover {
+  background-image: url('../ListItem/arrow-up-white.png');
+}
+
 #contained-modal-title-vcenter #arrow-down-icon {
-    background-image: url('../ListItem/arrow-down.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
+  background-image: url('../ListItem/arrow-down.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 #contained-modal-title-vcenter #arrow-down-icon:hover {
-    background-image: url('../ListItem/arrow-down-white.png');
-  }
+  background-image: url('../ListItem/arrow-down-white.png');
+}

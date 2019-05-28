@@ -18,9 +18,9 @@ class MyModalView extends Component {
         <Modal.Header closeButton >
         <Modal.Title id="contained-modal-title-vcenter">
         <div className="d-flex ml-auto">
-            <a href='#' onClick={this.props.handleDelete} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="delete-icon"></div></a>
-            <a href='#' onClick={this.props.handleMoveUp} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="arrow-up-icon"></div></a>
-            <a href='#' onClick={this.props.handleMoveDown} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="arrow-down-icon"></div></a>
+            <a href='#tasks' onClick={this.props.handleDelete} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="delete-icon"></div></a>
+            <a href='#tasks' onClick={this.props.handleMoveUp} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="arrow-up-icon"></div></a>
+            <a href='#tasks' onClick={this.props.handleMoveDown} onClickCapture={this.props.onHide}><div className="icon-bg text-center" id="arrow-down-icon"></div></a>
           </div>
         </Modal.Title>
           
@@ -38,7 +38,7 @@ class MyModalView extends Component {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide} >Ekle</Button>
+          <Button onClick={this.props.onHide} >Tamam</Button>
         </Modal.Footer>
       </Modal>
     )

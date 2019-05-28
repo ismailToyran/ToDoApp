@@ -63,6 +63,7 @@ class App extends Component {
     this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
+  // Ekle fonksiyonu - Modal kullandığı için en son handleHide çağırıp modali submit anında kapatıyor.
   handleSubmit (event) {
     event.preventDefault();
     const title = this.state.title;
@@ -81,6 +82,7 @@ class App extends Component {
     this.handleHide ();
   }
 
+  // Değişim anında değeri alıyor
   handleChange (event) {
     const title = event.target.value;
     console.log(title);
@@ -89,6 +91,7 @@ class App extends Component {
     });
   }
 
+  // Silme işlemini yapıp kaydediyor, en son diğer sekmeler için sonuçları yeniliyor.
   handleDelete (idToBeDeleted) {
     const newToDos = this.state.toDos.filter((toDo) => {
       return toDo.id !== idToBeDeleted
@@ -101,6 +104,7 @@ class App extends Component {
     this.handleOnLoad ();
   }
 
+  // Tüm görevlerden sonuçları güncelleyip aktif görevler kısmında iken silme ikonunu kullanıyor. Daha sonra sonuçları tüm görevler kısmınadakine filter ile bulup eşliyor.
   handleDeleteRemaining (idToBeDeletedFromRemaining) {
     this.handleOnLoad ();
     
@@ -119,6 +123,7 @@ class App extends Component {
     });
   }
 
+  // Tüm görevlerden sonuçları güncelleyip biten görevler kısmında iken silme ikonunu kullanıyor. Daha sonra sonuçları tüm görevler kısmınadakine filter ile bulup eşliyor.
   handleDeleteCompleted (idToBeDeletedFromCompleted) {
     this.handleOnLoad ();
     
@@ -137,6 +142,7 @@ class App extends Component {
     });
   }
 
+  // Check işlemini yapıyor en sonda yine diğer sekmeleri de güncelliyor.
   handleDone (idToBeMarkedAsDone) {
     console.log(`${idToBeMarkedAsDone} is clicked`);
     const toDo = this.state.toDos.filter((toDo) => {
@@ -150,6 +156,7 @@ class App extends Component {
     this.handleOnLoad ();
   }
 
+  // Tüm görevler sekmesinde ki seçili ve seçili olmayan görevleri kategorilere ayırıyor.
   handleOnLoad () {
     const newToDosRemaining = this.state.toDos.filter((toDo) => {
       return !toDo.done
@@ -165,6 +172,7 @@ class App extends Component {
     });
   }
 
+  // 2 ayrı modal için de gizleme.
   handleHide () {
     this.setState({
       addModalShow: false,
@@ -172,6 +180,7 @@ class App extends Component {
     });
   }
 
+  // Seçili tüm biten görevleri siliyor.
   handleClearCompleted () {
     this.handleOnLoad();
     const newToDos = this.state.toDos.filter((toDo) =>{
@@ -188,6 +197,7 @@ class App extends Component {
     });
   }
 
+  // Submit modal'ında ki çarpı butonuna basılması durumunda input kısmını silip çıkıyor.
   handlePopupClose () {
     this.setState({
       title: '',
@@ -195,6 +205,7 @@ class App extends Component {
     })
   }
 
+  // Seçili id'li itemi tüm görevler sekmesinde yukarı kaydırıyor, diğer sekmeleri güncelliyor.
   handleMoveUp (idToBeMovedUp) {
     const position = this.state.toDos.findIndex((index) => index.id === idToBeMovedUp)
     if (position < 0) {
@@ -213,6 +224,7 @@ class App extends Component {
     this.handleOnLoad();
   }
 
+  // İlk tüm görevlerden state'i güncelleyip seçili id'li itemi aktif görevler sekmesinde yukarı kaydırıyor, aynı 2 itemin sırasını alıp tüm görevler sekmesinde de güncelliyor.
   handleMoveUpRemaining (idToBeMovedUp) {
     this.handleOnLoad();
 
@@ -242,6 +254,7 @@ class App extends Component {
     });
   }
 
+  // İlk tüm görevlerden state'i güncelleyip seçili id'li itemi biten görevler sekmesinde yukarı kaydırıyor, aynı 2 itemin sırasını alıp tüm görevler sekmesinde de güncelliyor.
   handleMoveUpCompleted (idToBeMovedUp) {
     this.handleOnLoad();
 
@@ -271,6 +284,7 @@ class App extends Component {
     });
   }
 
+  // Seçili id'li itemi tüm görevler sekmesinde aşağı kaydırıyor, diğer sekmeleri güncelliyor.
   handleMoveDown (idToBeMovedDown) {
     const position = this.state.toDos.findIndex((index) => index.id === idToBeMovedDown)
     if (position < 0) {
@@ -290,6 +304,7 @@ class App extends Component {
     this.handleOnLoad();
   }
 
+  // İlk tüm görevlerden state'i güncelleyip seçili id'li itemi aktif görevler sekmesinde aşağı kaydırıyor, aynı 2 itemin sırasını alıp tüm görevler sekmesinde de güncelliyor.
   handleMoveDownRemaining (idToBeMovedDown) {
     this.handleOnLoad();
 
@@ -319,6 +334,7 @@ class App extends Component {
     });
   }
 
+  // İlk tüm görevlerden state'i güncelleyip seçili id'li itemi aktif görevler sekmesinde aşağı kaydırıyor, aynı 2 itemin sırasını alıp tüm görevler sekmesinde de güncelliyor.
   handleMoveDownCompleted (idToBeMovedDown) {
     this.handleOnLoad();
 
@@ -348,17 +364,20 @@ class App extends Component {
     });
   }
 
+  // Tab sekmesi seçme fonksiyonu
   handleTabSelect (tabIndex) {
     this.setState({
       tab: tabIndex
     })
   }
 
+  // Şimdilik fonksiyonu olmayan sonrası için orada bulunan buton için boşta bekliyor
   handleSelectAll () {
     // Doldurulmak istenirse sonrası için
     console.log('clicked handleSelectAll');
   }
 
+  // Hepsi kullanılmasada (sadece aktif görevleri kullanıyoruz) tüm - aktif ve biten görevlerin sayılarını gösteren fonksiyon.
   toDos (count) {
     if (count === "all") {
       return this.state.toDos.length;

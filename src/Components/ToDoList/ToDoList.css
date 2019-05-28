@@ -91,13 +91,14 @@
   border-radius: 25px;
   width: 170px;
   height: 40px;
+  box-shadow: none;
 }
 
-#bottom-bar {
+.bottom-bar {
   margin: 12px 24px;
 }
 
-#bottom-bar a {
+.bottom-bar a {
   font-size: 18px;
   font-family: "Roboto";
   font-weight: 600;
@@ -105,7 +106,7 @@
   line-height: 2.083;
 }
 
-#bottom-bar img {
+.bottom-bar img {
   margin-left: 12px;
 }
 
@@ -191,5 +192,15 @@
 @media only screen and (max-height: 720px) {
   .tab-item-container ul {
     height: 45vh;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-height: 720px) {
+  .tab-item-container ul {
+    height: 80vh;
+  }
+
+  .tab-item-container {
+    margin-right: 24px;
   }
 }

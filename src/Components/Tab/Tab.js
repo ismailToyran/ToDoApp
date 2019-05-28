@@ -20,6 +20,8 @@ class TabSection extends Component {
 		this.handleTasks = this.handleTasks.bind(this);
 	  }
 
+
+		// Ekrandaki width'i anlık olarak alıp yükleme ve boyutu değiştirme anında test edip state'i güncelliyor bu sayede style ve diğer işlemler uygulanıyor.
 	  handleTasks = () => {
 		if (window.innerWidth <= 540) {
 			this.setState({
@@ -47,7 +49,7 @@ class TabSection extends Component {
 			<Tabs activeKey={this.props.activeTab}
 				onSelect={this.props.onSelect}
 				onClick={this.props.handleOnLoad} >
-				<Tab eventKey="all" title={<span><img src={allImg} /> {this.state.tasks ? 'Tüm' : 'Tüm Görevler'} </span>}>
+				<Tab eventKey="all" title={<span><img src={allImg} alt='All tasks icon'/> {this.state.tasks ? 'Tüm' : 'Tüm Görevler'} </span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDos}
@@ -70,7 +72,7 @@ class TabSection extends Component {
 						/>
 					</Container>
 				</Tab>
-				<Tab eventKey="remaining" title={<span><img src={remainingImg} /> {this.state.tasks ? 'Aktif' : 'Aktif Görevler'} <h4 className="remaining" >{this.props.remaining}</h4></span>}>
+				<Tab eventKey="remaining" title={<span><img src={remainingImg} alt='Remaining tasks icon'/> {this.state.tasks ? 'Aktif' : 'Aktif Görevler'} <h4 className="remaining" >{this.props.remaining}</h4></span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDosRemaining}
@@ -93,7 +95,7 @@ class TabSection extends Component {
 						/>
 					</Container>
 				</Tab>
-				<Tab eventKey="completed" title={<span><img src={completedImg} /> {this.state.tasks ? 'Biten' : 'Biten Görevler'} </span>}>
+				<Tab eventKey="completed" title={<span><img src={completedImg} alt='Completed tasks icon'/> {this.state.tasks ? 'Biten' : 'Biten Görevler'} </span>}>
 					<Container>
 						<ToDoList
 							toDos={this.props.toDosCompleted}

@@ -11,9 +11,9 @@ class Header extends Component {
     return (
       <header className="d-flex align-items-center">
         <div className="yenile-img-bg">
-          <img src={yenileImg} />
+          <a href="#refresh"><img src={yenileImg} alt='Refresh icon' /></a>
         </div>
-        <Breadcrumb>Görev Yönetim Paneli</Breadcrumb>
+        <a href="#tasks-panel"><Breadcrumb>Görev Yönetim Paneli</Breadcrumb></a>
       </header>
     )
   }
